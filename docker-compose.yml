@@ -1,0 +1,20 @@
+name: django_celery_network
+
+services:
+  django:
+    container_name: django_celery
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: django-celery
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - django_celery_network
+
+networks:
+  django_celery_network:
+    driver: bridge
