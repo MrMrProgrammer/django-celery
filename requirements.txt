@@ -1,3 +1,5 @@
+--index-url https://mirror2.chabokan.net/pypi/simple/
+
 asgiref==3.11.1
 Django
 sqlparse==0.5.5

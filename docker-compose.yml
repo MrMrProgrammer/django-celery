@@ -1,5 +1,3 @@
-name: django-celery
-
 services:
   redis:
     image: redis:7.0.11-alpine
@@ -27,6 +25,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+    command: celery --app=config worker -l INFO
     volumes:
       - .:/app
     networks:
