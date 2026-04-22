@@ -1,5 +1,4 @@
 --index-url https://mirror2.chabokan.net/pypi/simple
 
-Django
 celery==5.3.5
 redis==5.0.1

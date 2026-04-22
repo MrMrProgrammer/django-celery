@@ -26,6 +26,7 @@ services:
     build:
       context: ./eshop
       dockerfile: Dockerfile
+    image: celery
     command: celery --app=config worker -l INFO
     volumes:
       - ./eshop:/app/
@@ -33,6 +34,22 @@ services:
       - django-celery
     depends_on:
       - redis
+      - django
+
+  standalone_celery:
+    container_name: standalone-celery
+    build:
+      context: ./celery_worker
+      dockerfile: Dockerfile
+    image: standalone-celery
+    command: celery -A celery_base worker -l INFO
+    volumes:
+      - ./celery_worker:/app
+    networks:
+      - django-celery
+    depends_on:
+      - redis
+      - django
 
 networks:
   django-celery:
