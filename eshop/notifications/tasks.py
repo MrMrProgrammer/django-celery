@@ -1,4 +1,4 @@
-from celery import shared_task, group
+from celery import shared_task, group, chain
 import time
 
 
@@ -33,3 +33,12 @@ group_tasks = group(
     task_4.s()
 )
 group_tasks.apply_async()
+
+
+chain_tasks = chain(
+    task_1.s(),
+    task_2.s(),
+    task_3.s(),
+    task_4.s()
+)
+chain_tasks.apply_async()
