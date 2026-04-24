@@ -27,7 +27,7 @@ services:
       context: ./eshop
       dockerfile: Dockerfile
     image: celery
-    command: celery --app=config worker -l INFO -Q queue1
+    command: celery --app=config worker -l INFO -Q celery,celery:1,celery:2,celery:3
     volumes:
       - ./eshop:/app/
     networks:
