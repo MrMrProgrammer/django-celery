@@ -3,3 +3,4 @@
 Django
 celery==5.3.5
 redis==5.0.1
+pika
