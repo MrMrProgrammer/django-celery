@@ -2,7 +2,7 @@ from celery import shared_task, group, chain
 import time
 
 
-@shared_task
+@shared_task(rate_limit="1/m")
 def task_1(queue="celery"):
     time.sleep(3)
     return

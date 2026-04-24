@@ -8,6 +8,9 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 
 # queues => celery,celery:1,celery:2,celery:3
 
+# rate limit
+# app.conf.task_default_rate_limit = "1/m"
+
 app.conf.broker_transport_options = {
     "priority_steps": list(range(10)),
     "sep": ":",
