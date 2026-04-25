@@ -24,38 +24,46 @@ app.conf.concurrency = 1
 
 
 @app.task(queue="tasks")
-def task_1():
+def send_sms(mobile: str, message: str):
     time.sleep(3)
-    return
+    return f"message sent to {mobile} with message: {message}"
+
+# send_sms.apply_async(args=["09370522995", "hi"])
+# send_sms.apply_async(kwargs={"mobile":"09370522995", "message":"hi"})
+
+# @app.task(queue="tasks")
+# def task_1():
+#     time.sleep(3)
+#     return
 
 
-@app.task(queue="tasks")
-def task_2():
-    time.sleep(3)
-    return
+# @app.task(queue="tasks")
+# def task_2():
+#     time.sleep(3)
+#     return
 
 
-@app.task(queue="tasks")
-def task_3():
-    time.sleep(3)
-    return
+# @app.task(queue="tasks")
+# def task_3():
+#     time.sleep(3)
+#     return
 
 
-@app.task(queue="tasks")
-def task_4():
-    time.sleep(3)
-    return
+# @app.task(queue="tasks")
+# def task_4():
+#     time.sleep(3)
+#     return
 
 
-def handle_tasks():
-    task_2.apply_async(priority=2)
-    task_4.apply_async(priority=4)
-    task_3.apply_async(priority=3)
-    task_2.apply_async(priority=2)
-    task_3.apply_async(priority=3)
-    task_1.apply_async(priority=1)
-    task_4.apply_async(priority=4)
-    task_1.apply_async(priority=1)
+# def handle_tasks():
+#     task_2.apply_async(priority=2)
+#     task_4.apply_async(priority=4)
+#     task_3.apply_async(priority=3)
+#     task_2.apply_async(priority=2)
+#     task_3.apply_async(priority=3)
+#     task_1.apply_async(priority=1)
+#     task_4.apply_async(priority=4)
+#     task_1.apply_async(priority=1)
 
 
 # queues => celery,celery:1,celery:2,celery:3
