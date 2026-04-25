@@ -48,14 +48,14 @@ def task_4():
 
 
 def handle_tasks():
-    task_1.apply_async(priority=1)
-    task_1.apply_async(priority=1)
     task_2.apply_async(priority=2)
+    task_4.apply_async(priority=4)
+    task_3.apply_async(priority=3)
     task_2.apply_async(priority=2)
     task_3.apply_async(priority=3)
-    task_3.apply_async(priority=3)
+    task_1.apply_async(priority=1)
     task_4.apply_async(priority=4)
-    task_4.apply_async(priority=4)
+    task_1.apply_async(priority=1)
 
 
 # queues => celery,celery:1,celery:2,celery:3
