@@ -52,6 +52,15 @@ services:
       - redis
       - django
 
+  flower:
+    image: mher/flower
+    ports:
+      - "5555:5555"
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
+    networks:
+      - django-celery
+
   # standalone_celery:
   #   container_name: standalone-celery
   #   build:
