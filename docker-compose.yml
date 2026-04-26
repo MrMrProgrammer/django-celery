@@ -38,10 +38,11 @@ services:
       context: ./eshop
       dockerfile: Dockerfile
     image: celery
-    command: >
-      sh -c "echo 'Waiting for RabbitMQ...' &&
-      sleep 10 &&
-      celery --app=config worker -l INFO -Q tasks"
+    command: celery --app=config worker -l INFO -Q tasks
+    # command: >
+    #   sh -c "echo 'Waiting for RabbitMQ...' &&
+    #   sleep 10 &&
+    #   celery --app=config worker -l INFO -Q tasks"
     volumes:
       - ./eshop:/app/
     networks:
