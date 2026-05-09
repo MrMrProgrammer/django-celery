@@ -1,6 +1,12 @@
-from celery import shared_task
+from config.celery import app
 
 
-@shared_task(queue="tasks")
+@app.task(
+    queue="tasks",
+    autoretry_for=(ConnectionError,),
+    default_retry_delay=5,
+    retry_kwargs={"max_retries": 5}
+)
 def send_sms_to_user():
-    print("sms has been sent to user")
+    raise ConnectionError("Connection Error ...")
+    # print("sms has been sent to user")
