@@ -1,11 +1,21 @@
 import os
-from celery import Celery
+from celery import Celery, Task
 from kombu import Exchange, Queue
 import time
+import logging
+
+
+class CustomTask(Task):
+    def on_failure(self, exc, task_id, args, kwargs, einfo):
+        if isinstance(exc, ConnectionError):
+            logging.error("Connection error in project.")
+        else:
+            print(f"task id: {task_id} got error")
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 app = Celery("config")
+app.Task = CustomTask
 app.config_from_object("django.conf:settings", namespace="CELERY")
 
 app.conf.task_queues = [
