@@ -1,6 +1,5 @@
-from config.celery import app
 from celery import group
-
+from config.celery import app
 
 # @app.task(
 #     queue="tasks",
