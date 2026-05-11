@@ -1,5 +1,5 @@
-
 Django
 celery
-redi
+redis
 pika
+django-celery-beat

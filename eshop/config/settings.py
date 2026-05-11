@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    "notifications"
+    "notifications",
+
+    "django_celery_beat"
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,4 @@ CELERY_RESULT_BACKEND = os.environ.get(
     "CELERY_BACKEND",
     "redis://redis:6379/0"
 )
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
